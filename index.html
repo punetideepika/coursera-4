@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MenuApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Restaurant Menu</title>
+  <!-- Include AngularJS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <!-- Include ui-router -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.30/angular-ui-router.min.js"></script>
+  <!-- Include JavaScript files -->
+  <script src="menuapp.module.js"></script>
+  <script src="data.module.js"></script>
+  <script src="menudata.service.js"></script>
+  <script src="categories.component.js"></script>
+  <script src="items.component.js"></script>
+  <script src="routes.js"></script>
+</head>
+<body>
+
+  <!-- Define UI views -->
+  <div ui-view></div>
+
+  <!-- Define HTML templates -->
+  <script type="text/ng-template" id="categories.template.html">
+    <div>
+      <h2>Categories</h2>
+      <ul>
+        <li ng-repeat="category in $ctrl.categories">
+          <a ui-sref="items({ categoryShortName: category.short_name })">{{ category.name }}</a>
+        </li>
+      </ul>
+    </div>
+  </script>
+
+  <script type="text/ng-template" id="items.template.html">
+    <div>
+      <h2>Menu Items</h2>
+      <ul>
+        <li ng-repeat="item in $ctrl.items">
+          {{ item.name }} - {{ item.description }}
+        </li>
+      </ul>
+    </div>
+  </script>
+
+  <script type="text/ng-template" id="home.template.html">
+    <div>
+      <h1>Welcome to our Restaurant</h1>
+      <a ui-sref="categories">View Categories</a>
+    </div>
+  </script>
+
+</body>
+</html>
